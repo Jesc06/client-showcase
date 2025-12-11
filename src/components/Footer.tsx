@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
-import { Instagram, Youtube, Mail, MapPin, Heart } from 'lucide-react';
+import { Instagram, Facebook, MapPin, Heart } from 'lucide-react';
 
 export const Footer = () => {
   const socialLinks = [
-    { icon: Instagram, label: 'Instagram', href: '#' },
-    { icon: Youtube, label: 'YouTube', href: '#' },
-    { icon: Mail, label: 'Email', href: 'mailto:contact@example.com' },
+    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/renier.magsipoc.1' },
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/itsz_renier?igsh=enFrdDZvYjI5bDVy' },
   ];
 
   return (
@@ -54,16 +53,22 @@ export const Footer = () => {
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="w-11 h-11 rounded-full bg-gray-100/80 dark:bg-white/[0.08] hover:bg-gray-200/90 dark:hover:bg-white/[0.12] backdrop-blur-sm flex items-center justify-center text-gray-700 dark:text-gray-300 transition-all duration-300 shadow-sm hover:shadow-md"
+                    transition={{ delay: i * 0.1, type: "spring", stiffness: 400, damping: 17 }}
+                    whileHover={{ scale: 1.08, y: -3 }}
+                    whileTap={{ scale: 0.92 }}
+                    className="relative group w-11 h-11 rounded-full bg-gray-100/80 dark:bg-white/10 hover:bg-gray-200/90 dark:hover:bg-white/15 backdrop-blur-sm flex items-center justify-center text-gray-700 dark:text-gray-300 transition-all duration-300 shadow-sm hover:shadow-md"
+                    title={social.label}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5" strokeWidth={1.5} />
+                    {/* Tooltip */}
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                      {social.label}
+                    </span>
                   </motion.a>
                 );
               })}
