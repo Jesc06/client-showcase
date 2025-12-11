@@ -14,14 +14,14 @@ export const Footer = () => {
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 relative z-10">
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
+        <div className="grid grid-cols-12 gap-8 lg:gap-16 mb-16">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-5"
+            className="col-span-12 lg:col-span-5"
           >
             <motion.div
               whileHover={{ x: 5 }}
@@ -75,7 +75,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-3"
+            className="col-span-6 lg:col-span-3"
           >
             <h4 className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-6 font-medium">
               Navigation
@@ -115,7 +115,7 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-4"
+            className="col-span-6 lg:col-span-4"
           >
             <h4 className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-6 font-medium">
               Services
