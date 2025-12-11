@@ -9,8 +9,8 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-white dark:bg-[#000000] border-t border-gray-200 dark:border-white/10">
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-50/30 dark:to-white/2" />
+    <footer className="relative overflow-hidden bg-white/95 dark:bg-[#000000]/95 backdrop-blur-xl border-t border-gray-200/60 dark:border-white/[0.08]">
+      <div className="absolute inset-0 bg-linear-to-b from-white/50 via-transparent to-gray-50/30 dark:from-transparent dark:via-transparent dark:to-white/[0.02]" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 relative z-10">
         {/* Main Content */}
@@ -24,18 +24,18 @@ export const Footer = () => {
             className="col-span-12 lg:col-span-5"
           >
             <motion.div
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="inline-block mb-6"
+              whileHover={{ x: 2 }}
+              transition={{ duration: 0.4, ease: [0.28, 0.11, 0.32, 1] }}
+              className="inline-block mb-8"
             >
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
                 <span className="text-[#1d1d1f] dark:text-[#f5f5f7]">
                   Renier Magsipoc
                 </span>
               </h2>
             </motion.div>
             
-            <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-8 max-w-md">
+            <p className="text-gray-600 dark:text-gray-400 text-base leading-[1.6] mb-10 max-w-md font-normal">
               Transforming visions into cinematic reality through expert video editing, 
               color grading, and motion graphics.
             </p>
@@ -58,9 +58,10 @@ export const Footer = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 flex items-center justify-center text-gray-600 dark:text-gray-400 transition-all duration-200"
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="w-11 h-11 rounded-full bg-gray-100/80 dark:bg-white/[0.08] hover:bg-gray-200/90 dark:hover:bg-white/[0.12] backdrop-blur-sm flex items-center justify-center text-gray-700 dark:text-gray-300 transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     <Icon className="w-5 h-5" />
                   </motion.a>
@@ -90,14 +91,14 @@ export const Footer = () => {
                   transition={{ delay: 0.2 + i * 0.05, duration: 0.6, ease: "easeOut" }}
                 >
                   <motion.button
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.4, ease: [0.28, 0.11, 0.32, 1] }}
                     onClick={() =>
                       document
                         .getElementById(link.toLowerCase())
                         ?.scrollIntoView({ behavior: 'smooth' })
                     }
-                    className="text-gray-700 dark:text-gray-300 hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-300 ease-out text-sm font-medium group"
+                    className="text-gray-700 dark:text-gray-300 hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-300 ease-out text-sm font-normal group"
                   >
                     <span className="relative">
                       {link}
@@ -135,8 +136,9 @@ export const Footer = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.25 + i * 0.05, duration: 0.6, ease: "easeOut" }}
-                  whileHover={{ x: 5 }}
-                  className="text-gray-600 dark:text-gray-400 text-sm font-normal cursor-pointer hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-200"
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.4, ease: [0.28, 0.11, 0.32, 1] }}
+                  className="text-gray-600 dark:text-gray-400 text-sm font-normal cursor-pointer hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-300"
                 >
                   {service}
                 </motion.li>
@@ -147,14 +149,14 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <motion.div 
-          className="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="pt-10 border-t border-gray-200/60 dark:border-white/[0.08] flex flex-col md:flex-row justify-between items-center gap-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
           <motion.p 
-            className="text-sm text-gray-600 dark:text-gray-400 text-center md:text-left"
+            className="text-sm text-gray-500 dark:text-gray-500 text-center md:text-left font-normal"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -164,7 +166,7 @@ export const Footer = () => {
           </motion.p>
           
           <motion.div 
-            className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+            className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-500 font-normal"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
