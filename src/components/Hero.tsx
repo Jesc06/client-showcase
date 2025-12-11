@@ -99,10 +99,10 @@ export const Hero = () => {
               className="mb-8 md:mb-10 flex justify-center"
             >
               <motion.div 
-                className="relative group cursor-default inline-flex items-center gap-3 px-5 md:px-6 py-2.5 md:py-3 rounded-full glass-premium overflow-hidden"
+                className="relative group cursor-default inline-flex items-center gap-3 px-5 md:px-6 py-2.5 md:py-3 rounded-full glass-premium overflow-hidden backdrop-blur-xl border border-white/20 dark:border-white/10"
                 whileHover={{ scale: 1.03 }}
                 style={{
-                  boxShadow: '0 0 25px rgba(255, 99, 74, 0.25), 0 8px 30px rgba(0, 0, 0, 0.08)'
+                  boxShadow: '0 0 30px rgba(255, 99, 74, 0.2), 0 8px 25px rgba(0, 0, 0, 0.06)'
                 }}
               >
                 <span className="relative flex h-2.5 w-2.5">
@@ -148,13 +148,10 @@ export const Hero = () => {
                     initial={{ y: "100%", scale: 0.95 }}
                     animate={{ y: 0, scale: 1 }}
                     transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[18vw] sm:text-[15vw] md:text-[12vw] lg:text-[10.5vw] xl:text-[9.5vw] leading-[0.95] font-black tracking-[-0.02em] text-transparent bg-clip-text bg-gradient-to-br from-accent via-accent to-[#ff8f7a] relative z-10"
+                    className="text-[18vw] sm:text-[15vw] md:text-[12vw] lg:text-[10.5vw] xl:text-[9.5vw] leading-[0.95] font-black tracking-[-0.02em] text-gray-900 dark:text-white relative z-10"
                   >
                     MAGSIPOC
                   </motion.h1>
-                  
-                  {/* Enhanced Text Glow Effect */}
-                  <div className="absolute inset-0 blur-[70px] md:blur-[90px] bg-accent/20 z-0 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -185,9 +182,9 @@ export const Hero = () => {
                 whileTap={{ scale: 0.98 }}
                 onHoverStart={() => setCursorVariant('button')}
                 onHoverEnd={() => setCursorVariant('default')}
-                className="group relative px-10 md:px-12 py-4 md:py-5 bg-linear-to-r from-accent to-accent-hover text-white rounded-full font-bold text-base md:text-lg tracking-wide overflow-hidden transition-all duration-500 shadow-lg hover:shadow-xl"
+                className="group relative px-10 md:px-12 py-4 md:py-5 bg-linear-to-r from-accent to-accent-hover text-white rounded-full font-bold text-base md:text-lg tracking-wide overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl border border-accent/20"
                 style={{
-                  boxShadow: '0 8px 30px rgba(255, 99, 74, 0.35)'
+                  boxShadow: '0 10px 40px rgba(255, 99, 74, 0.4), 0 0 30px rgba(255, 99, 74, 0.2)'
                 }}
               >
                 <motion.div 
@@ -212,7 +209,7 @@ export const Hero = () => {
                 whileTap={{ scale: 0.98 }}
                 onHoverStart={() => setCursorVariant('button')}
                 onHoverEnd={() => setCursorVariant('default')}
-                className="group relative px-10 md:px-12 py-4 md:py-5 glass-premium text-gray-900 dark:text-white rounded-full font-bold text-base md:text-lg tracking-wide overflow-hidden transition-all duration-500 shadow-md hover:shadow-lg"
+                className="group relative px-10 md:px-12 py-4 md:py-5 glass-premium text-gray-900 dark:text-white rounded-full font-bold text-base md:text-lg tracking-wide overflow-hidden transition-all duration-500 shadow-lg hover:shadow-xl backdrop-blur-xl border border-gray-200/50 dark:border-white/10"
               >
                 <motion.div
                   className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"

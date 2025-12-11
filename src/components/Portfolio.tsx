@@ -148,10 +148,10 @@ export const Portfolio = () => {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setFilter(category as typeof filter)}
-              className={`relative px-5 md:px-6 py-2.5 md:py-3 rounded-full border transition-all overflow-hidden font-bold tracking-wide text-xs md:text-sm ${
+              className={`relative px-5 md:px-6 py-2.5 md:py-3 rounded-full border-2 transition-all overflow-hidden font-bold tracking-wide text-xs md:text-sm backdrop-blur-sm ${
                 filter === category
-                  ? 'bg-accent border-accent text-white shadow-lg shadow-accent/25'
-                  : 'glass hover:border-accent hover:text-accent'
+                  ? 'bg-accent border-accent text-white shadow-lg shadow-accent/30'
+                  : 'glass border-gray-200/50 dark:border-white/10 hover:border-accent hover:text-accent hover:shadow-md'
               }`}
             >
               <span className="relative z-10 font-bold uppercase tracking-wider">{category}</span>
@@ -182,12 +182,12 @@ export const Portfolio = () => {
                 y: -12, 
                 scale: 1.02
               }}
-              className="group relative overflow-hidden cursor-pointer aspect-[4/5] bg-gray-100 dark:bg-[#12121a] rounded-2xl md:rounded-3xl glass hover:border-accent/30 transition-all hover:shadow-2xl hover:shadow-accent/15"
+              className="group relative overflow-hidden cursor-pointer aspect-[4/5] bg-gray-100 dark:bg-[#12121a] rounded-2xl md:rounded-3xl glass hover:border-accent/40 transition-all hover:shadow-2xl hover:shadow-accent/20 border-2 border-gray-200/50 dark:border-white/5"
               onClick={() => setSelectedItem(item)}
               style={{
                 boxShadow: hoveredId === item.id 
-                  ? '0 20px 60px rgba(255, 99, 74, 0.2), 0 0 40px rgba(255, 99, 74, 0.1)' 
-                  : '0 10px 30px rgba(0, 0, 0, 0.1)'
+                  ? '0 25px 70px rgba(255, 99, 74, 0.25), 0 0 50px rgba(255, 99, 74, 0.15)' 
+                  : '0 10px 40px rgba(0, 0, 0, 0.08)'
               }}
             >
               {/* Premium shimmer effect */}
@@ -218,7 +218,7 @@ export const Portfolio = () => {
               <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <motion.span 
-                    className="px-2.5 md:px-3 py-1 glass text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider rounded-full"
+                    className="px-2.5 md:px-3 py-1 glass text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md border border-white/20"
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 99, 74, 1)", borderColor: "rgba(255, 99, 74, 1)" }}
                   >
                     {item.category}
@@ -293,7 +293,7 @@ export const Portfolio = () => {
             >
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute -top-16 right-0 p-3 bg-[#FF634A] text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors rounded-lg"
+                className="absolute -top-16 right-0 p-3 bg-accent text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-xl shadow-lg hover:shadow-xl border-2 border-accent hover:border-black dark:hover:border-white"
               >
                 <X size={24} />
               </button>

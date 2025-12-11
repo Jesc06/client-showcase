@@ -67,7 +67,7 @@ export const Services = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="h-1.5 w-24 bg-gradient-to-r from-[#FF634A] to-[#ff7a5c] rounded-full shadow-sm shadow-[#FF634A]/30 mb-8 mx-auto"
+            className="h-1.5 w-24 bg-linear-to-r from-accent to-accent-hover rounded-full shadow-lg shadow-accent/40 mb-8 mx-auto"
           />
 
           <motion.h2 
