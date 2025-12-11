@@ -34,7 +34,25 @@ const services = [
 
 export const Services = () => {
   return (
-    <section className="py-24 md:py-32 bg-white dark:bg-[#000000] relative">
+    <section className="py-24 md:py-32 bg-white dark:bg-[#000000] relative overflow-hidden">
+      {/* Subtle Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.3, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2 }}
+          className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#0071e3]/5 dark:bg-[#2997ff]/5 rounded-full blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.2, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.5, delay: 0.3 }}
+          className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-purple-500/5 rounded-full blur-3xl"
+        />
+      </div>
+
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Header - Apple Style */}
         <motion.div
@@ -68,21 +86,21 @@ export const Services = () => {
               }}
               whileHover={{ 
                 y: -12, 
-                scale: 1.015,
-                rotateY: 2,
+                scale: 1.02,
               }}
-              className="group relative p-6 sm:p-8 md:p-10 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/8 border border-gray-200 dark:border-white/10 transition-all duration-200 rounded-2xl overflow-hidden"
+              className="group relative p-6 sm:p-8 md:p-10 glass-card rounded-3xl overflow-hidden cursor-pointer"
+              style={{ perspective: 1000 }}
             >
               {/* Number Badge */}
-              <div className="absolute top-8 md:top-10 right-8 md:right-10 text-6xl sm:text-7xl md:text-8xl font-semibold text-gray-100 dark:text-white/5 select-none">
+              <div className="absolute top-8 md:top-10 right-8 md:right-10 text-6xl sm:text-7xl md:text-8xl font-semibold text-gray-100 dark:text-white/5 select-none transition-all duration-500 group-hover:scale-110 group-hover:text-[#0071e3]/10 dark:group-hover:text-[#2997ff]/10">
                 {service.number}
               </div>
 
               {/* Icon */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-                className="w-16 h-16 sm:w-18 md:w-20 sm:h-18 md:h-20 bg-[#0071e3] dark:bg-[#2997ff] flex items-center justify-center mb-6 md:mb-8 rounded-2xl relative z-10"
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="w-16 h-16 sm:w-18 md:w-20 sm:h-18 md:h-20 bg-[#0071e3] dark:bg-[#2997ff] flex items-center justify-center mb-6 md:mb-8 rounded-2xl relative z-10 shadow-lg shadow-[#0071e3]/20 dark:shadow-[#2997ff]/20"
               >
                 <service.icon size={32} className="text-white relative z-10" strokeWidth={2} />
               </motion.div>

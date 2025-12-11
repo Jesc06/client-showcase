@@ -15,8 +15,24 @@ export const Contact = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-[#fafafa] dark:bg-[#000000] relative">
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/40 dark:to-white/2" />
+    <section className="py-24 md:py-32 bg-[#fafafa] dark:bg-[#000000] relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.2, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2 }}
+          className="absolute top-1/4 left-0 w-1/2 h-1/2 bg-[#0071e3]/10 dark:bg-[#2997ff]/5 rounded-full blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 0.15, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.5, delay: 0.3 }}
+          className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl"
+        />
+      </div>
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Header */}
@@ -53,19 +69,19 @@ export const Contact = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12, type: "spring" }}
                 whileHover={{ 
-                  x: 8, 
-                  scale: 1.015,
+                  x: 12, 
+                  scale: 1.02,
                 }}
-                className="group relative p-6 sm:p-8 md:p-10 glass hover:shadow-2xl hover:shadow-[#0071e3]/10 dark:hover:shadow-[#2997ff]/10 transition-all rounded-xl md:rounded-2xl overflow-hidden"
+                className="group relative p-6 sm:p-8 md:p-10 glass-card rounded-2xl overflow-hidden cursor-pointer"
                 style={{ perspective: 1000 }}
               >
                 <div className="flex items-start gap-4 md:gap-5">
                   <motion.div 
-                    className="p-3 md:p-4 bg-[#0071e3] dark:bg-[#2997ff] rounded-xl"
-                    whileHover={{ rotate: 5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
+                    className="p-3 md:p-4 bg-[#0071e3] dark:bg-[#2997ff] rounded-2xl shadow-lg shadow-[#0071e3]/20 dark:shadow-[#2997ff]/20"
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <item.icon size={22} className="text-white" strokeWidth={2} />
+                    <item.icon size={24} className="text-white" strokeWidth={2} />
                   </motion.div>
                   <div>
                     <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 md:mb-3 font-medium">
@@ -130,8 +146,9 @@ export const Contact = () => {
                     type={field.type}
                     value={field.value}
                     onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                    whileFocus={{ scale: 1.005 }}
-                    className="w-full px-5 md:px-7 py-4 md:py-5 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-[#0071e3] dark:focus:border-[#2997ff] outline-none transition-all text-[#1d1d1f] dark:text-[#f5f5f7] placeholder:text-gray-500 dark:placeholder:text-gray-500 font-normal text-sm md:text-base rounded-xl"
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="w-full px-5 md:px-7 py-4 md:py-5 glass-premium focus:border-[#0071e3] dark:focus:border-[#2997ff] outline-none transition-all text-[#1d1d1f] dark:text-[#f5f5f7] placeholder:text-gray-500 dark:placeholder:text-gray-500 font-normal text-sm md:text-base rounded-2xl focus:shadow-lg focus:shadow-[#0071e3]/10 dark:focus:shadow-[#2997ff]/10"
                     placeholder={field.placeholder}
                     required
                   />
@@ -149,8 +166,9 @@ export const Contact = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={6}
-                  whileFocus={{ scale: 1.005 }}
-                  className="w-full px-5 md:px-7 py-4 md:py-5 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-[#0071e3] dark:focus:border-[#2997ff] outline-none transition-all resize-none text-[#1d1d1f] dark:text-[#f5f5f7] placeholder:text-gray-500 dark:placeholder:text-gray-500 font-normal text-sm md:text-base rounded-xl"
+                  whileFocus={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="w-full px-5 md:px-7 py-4 md:py-5 glass-premium focus:border-[#0071e3] dark:focus:border-[#2997ff] outline-none transition-all resize-none text-[#1d1d1f] dark:text-[#f5f5f7] placeholder:text-gray-500 dark:placeholder:text-gray-500 font-normal text-sm md:text-base rounded-2xl focus:shadow-lg focus:shadow-[#0071e3]/10 dark:focus:shadow-[#2997ff]/10"
                   placeholder="YOUR MESSAGE"
                   required
                 />
@@ -161,10 +179,10 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="group relative w-full px-8 md:px-10 py-4 md:py-5 bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium rounded-full transition-all duration-200 shadow-sm hover:shadow-md"
+                className="group relative w-full px-8 md:px-10 py-4 md:py-5 bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-[#0071e3]/20 hover:shadow-xl hover:shadow-[#0071e3]/30"
               >
                 <span className="flex items-center justify-center gap-3 text-base md:text-lg">
                   Send Message

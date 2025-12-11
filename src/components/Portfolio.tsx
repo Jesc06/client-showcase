@@ -150,17 +150,18 @@ export const Portfolio = () => {
               onHoverStart={() => setHoveredId(item.id)}
               onHoverEnd={() => setHoveredId(null)}
               whileHover={{ 
-                y: -12, 
-                scale: 1.02
+                y: -16, 
+                scale: 1.03
               }}
-              className="group relative overflow-hidden cursor-pointer aspect-4/5 bg-white dark:bg-white/5 rounded-2xl md:rounded-3xl border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all hover:shadow-lg"
+              className="group relative overflow-hidden cursor-pointer aspect-4/5 glass-card rounded-3xl transition-all"
               onClick={() => setSelectedItem(item)}
+              style={{ perspective: 1000 }}
             >
-              {/* Premium shimmer effect */}
+              {/* Enhanced shimmer effect */}
               <motion.div
-                className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full"
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 dark:via-white/10 to-transparent -translate-x-full z-20"
                 animate={hoveredId === item.id ? { x: ['100%', '200%'] } : {}}
-                transition={{ duration: 1.5, ease: 'easeInOut' }}
+                transition={{ duration: 1.2, ease: 'easeInOut' }}
               />
               {/* Image */}
               <motion.img
@@ -168,16 +169,16 @@ export const Portfolio = () => {
                 alt={item.title}
                 className="w-full h-full object-cover"
                 animate={{
-                  scale: hoveredId === item.id ? 1.15 : 1,
+                  scale: hoveredId === item.id ? 1.1 : 1,
                 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.7, ease: [0.28, 0.11, 0.32, 1] }}
               />
 
-              {/* Overlay */}
+              {/* Enhanced Overlay */}
               <motion.div
-                className="absolute inset-0 bg-linear-to-t from-black/95 via-black/30 to-transparent"
-                initial={{ opacity: 0.65 }}
-                animate={{ opacity: hoveredId === item.id ? 0.85 : 0.65 }}
+                className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-transparent"
+                initial={{ opacity: 0.7 }}
+                animate={{ opacity: hoveredId === item.id ? 0.9 : 0.7 }}
               />
 
               {/* Content */}

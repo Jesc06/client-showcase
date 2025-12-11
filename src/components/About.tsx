@@ -61,14 +61,21 @@ export const About = () => {
               </p>
 
               <div className="flex flex-wrap gap-3 md:gap-4 mt-6 md:mt-8">
-                <div className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-100 dark:bg-white/10 rounded-full flex items-center gap-2 md:gap-3 hover:bg-gray-200 dark:hover:bg-white/15 transition-all duration-200">
-                  <Laptop size={18} className="text-[#0071e3] dark:text-[#2997ff]" />
-                  <span className="font-medium text-xs md:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">Premiere Pro</span>
-                </div>
-                <div className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-100 dark:bg-white/10 rounded-full flex items-center gap-2 md:gap-3 hover:bg-gray-200 dark:hover:bg-white/15 transition-all duration-200">
-                  <Laptop size={18} className="text-[#0071e3] dark:text-[#2997ff]" />
-                  <span className="font-medium text-xs md:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">CapCut Pro</span>
-                </div>
+                {['Premiere Pro', 'CapCut Pro'].map((tool, i) => (
+                  <motion.div
+                    key={tool}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, type: "spring", stiffness: 400, damping: 17 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 md:px-6 py-2.5 md:py-3 glass-premium rounded-full flex items-center gap-2 md:gap-3 cursor-pointer"
+                  >
+                    <Laptop size={18} className="text-[#0071e3] dark:text-[#2997ff]" />
+                    <span className="font-medium text-xs md:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">{tool}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
