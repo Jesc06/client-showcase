@@ -58,7 +58,7 @@ export const Navbar = () => {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent blur-xl"
+            className="absolute inset-0 bg-linear-to-b from-gray-100/50 dark:from-white/5 to-transparent blur-xl"
           />
         )}
         
@@ -70,23 +70,23 @@ export const Navbar = () => {
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-accent to-accent-hover flex items-center justify-center">
-                  <span className="text-white font-black text-sm">RM</span>
-                </div>
+              <div className="w-8 h-8 rounded-lg bg-[#0071e3] dark:bg-[#2997ff] flex items-center justify-center">
+                <span className="text-white font-semibold text-sm">RM</span>
+              </div>
               </div>
             </motion.div>
 
-            {/* Desktop Menu - Centered */}
+            {/* Desktop Menu - Centered Apple Style */}
             <div className="hidden md:flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
               <motion.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex items-center gap-1.5 glass-premium rounded-full p-2.5 shadow-2xl"
+                transition={{ delay: 0.2, duration: 0.5, ease: [0.28, 0.11, 0.32, 1] }}
+                className="flex items-center gap-1 glass-premium rounded-full px-1.5 py-1.5"
                 style={{
                   boxShadow: scrolled 
-                    ? '0 20px 60px rgba(0, 0, 0, 0.15), 0 0 40px rgba(255, 99, 74, 0.1)' 
-                    : '0 10px 40px rgba(0, 0, 0, 0.1)'
+                    ? '0 8px 30px rgba(0, 0, 0, 0.12)' 
+                    : '0 4px 20px rgba(0, 0, 0, 0.08)'
                 }}
               >
                 {navItems.map((item, index) => {
@@ -98,65 +98,54 @@ export const Navbar = () => {
                       onClick={() => scrollToSection(item.name)}
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.08 + 0.3 }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`relative px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all duration-300 outline-none focus:outline-none ${
+                      transition={{ delay: index * 0.05 + 0.25, duration: 0.4, ease: [0.28, 0.11, 0.32, 1] }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`relative px-4 py-2 rounded-full text-sm font-normal tracking-tight transition-all duration-300 outline-none focus:outline-none ${
                         isActive
                           ? 'text-white'
-                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeTab"
-                          className="absolute inset-0 bg-accent rounded-full shadow-lg shadow-accent/25"
-                          transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
+                          className="absolute inset-0 bg-[#0071e3] dark:bg-[#0071e3] rounded-full"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                         />
                       )}
-                      <span className="relative z-10 flex items-center gap-2 md:gap-2.5">
-                        <Icon className={`w-3.5 h-3.5 md:w-4 md:h-4 ${isActive ? 'text-white' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white'}`} strokeWidth={2.5} />
+                      <span className="relative z-10 flex items-center gap-1.5">
+                        <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : ''}`} strokeWidth={2} />
                         {item.name}
                       </span>
                     </motion.button>
                   );
                 })}
 
-                {/* Divider */}
-                <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-2" />
+                {/* Separator */}
+                <div className="w-px h-5 bg-gray-200/60 dark:bg-gray-700/60 mx-1" />
 
-                {/* Theme Toggle */}
+                {/* Theme Toggle - Apple Style */}
                 <motion.button
-                  whileHover={{ scale: 1.08 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={toggleTheme}
-                  className="relative p-2.5 md:p-3 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-400 transition-all duration-500 overflow-hidden group"
+                  className="relative p-2 rounded-full hover:bg-gray-100/80 dark:hover:bg-white/10 text-gray-600 dark:text-gray-400 transition-all duration-400"
                 >
-                  {/* Premium background effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-linear-to-br from-amber-400/20 to-purple-500/20 dark:from-blue-500/20 dark:to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={isTransitioning ? {
-                      scale: [1, 1.5, 1],
-                      rotate: [0, 180, 360]
-                    } : {}}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                  
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={theme}
-                      initial={{ y: -20, opacity: 0, rotate: -180, scale: 0.5 }}
-                      animate={{ y: 0, opacity: 1, rotate: 0, scale: 1 }}
-                      exit={{ y: 20, opacity: 0, rotate: 180, scale: 0.5 }}
+                      initial={{ y: -10, opacity: 0, rotate: -90 }}
+                      animate={{ y: 0, opacity: 1, rotate: 0 }}
+                      exit={{ y: 10, opacity: 0, rotate: 90 }}
                       transition={{ 
-                        duration: 0.5,
-                        ease: [0.4, 0, 0.2, 1]
+                        duration: 0.3,
+                        ease: [0.28, 0.11, 0.32, 1]
                       }}
-                      className="relative z-10"
                     >
                       {theme === 'dark' ? 
-                        <Sun className="w-4 h-4 md:w-5 md:h-5 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" strokeWidth={2.5} /> : 
-                        <Moon className="w-4 h-4 md:w-5 md:h-5 text-accent drop-shadow-[0_0_8px_rgba(255,99,74,0.6)]" strokeWidth={2.5} />
+                        <Sun className="w-4 h-4" strokeWidth={2} /> : 
+                        <Moon className="w-4 h-4" strokeWidth={2} />
                       }
                     </motion.div>
                   </AnimatePresence>
@@ -196,7 +185,7 @@ export const Navbar = () => {
                   >
                     {theme === 'dark' ? 
                       <Sun size={17} strokeWidth={2.5} className="text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.6)] relative z-10" /> : 
-                      <Moon size={17} strokeWidth={2.5} className="text-accent drop-shadow-[0_0_6px_rgba(255,99,74,0.6)] relative z-10" />
+                      <Moon size={17} strokeWidth={2.5} className="text-[#0071e3] dark:text-[#2997ff] drop-shadow-[0_0_6px_rgba(0,113,227,0.4)] relative z-10" />
                     }
                   </motion.div>
                 </AnimatePresence>
@@ -258,10 +247,10 @@ export const Navbar = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className={`w-full flex items-center gap-3.5 md:gap-4 px-4 md:px-5 py-3.5 md:py-4 rounded-xl md:rounded-xl font-bold text-sm md:text-base transition-all ${
+                      className={`relative px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium text-sm md:text-base transition-all duration-300 ${
                         activeSection === item.name.toLowerCase()
-                          ? 'bg-linear-to-r from-accent to-[#ff7a5c] text-white shadow-lg shadow-accent/30'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5 hover:shadow-md'
+                          ? 'bg-[#0071e3] text-white'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5'
                       }`}
                     >
                       <Icon className="w-4.5 h-4.5 md:w-5 md:h-5" strokeWidth={2.5} />

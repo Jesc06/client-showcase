@@ -9,23 +9,8 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-linear-to-b from-white via-gray-50/50 to-white dark:from-[#050508] dark:via-[#0a0a14] dark:to-[#050508] border-t border-gray-200 dark:border-gray-800">
-      {/* Gradient Top Border */}
-      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-accent to-transparent" />
-      
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255, 99, 74, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 99, 74, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-          }}
-        />
-      </div>
+    <footer className="relative overflow-hidden bg-white dark:bg-[#000000] border-t border-gray-200 dark:border-white/10">
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-50/30 dark:to-white/2" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 relative z-10">
         {/* Main Content */}
@@ -43,12 +28,10 @@ export const Footer = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="inline-block mb-6"
             >
-              <h2 className="text-4xl md:text-5xl font-black tracking-tighter">
-                <span className="bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                  RENIER
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
+                <span className="text-[#1d1d1f] dark:text-[#f5f5f7]">
+                  Renier Magsipoc
                 </span>
-                <br />
-                <span className="text-accent">MAGSIPOC</span>
               </h2>
             </motion.div>
             
@@ -75,11 +58,11 @@ export const Footer = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-                    whileHover={{ y: -4, scale: 1.05 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800/50 hover:bg-accent dark:hover:bg-accent flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-500 ease-out group backdrop-blur-sm"
+                    className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 flex items-center justify-center text-gray-600 dark:text-gray-400 transition-all duration-200"
                   >
-                    <Icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-500 ease-out" />
+                    <Icon className="w-5 h-5" />
                   </motion.a>
                 );
               })}
@@ -94,7 +77,7 @@ export const Footer = () => {
             transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-3"
           >
-            <h4 className="text-xs uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400 mb-6 font-black">
+            <h4 className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-6 font-medium">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -114,11 +97,11 @@ export const Footer = () => {
                         .getElementById(link.toLowerCase())
                         ?.scrollIntoView({ behavior: 'smooth' })
                     }
-                    className="text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors duration-500 ease-out text-sm font-semibold group"
+                    className="text-gray-700 dark:text-gray-300 hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-300 ease-out text-sm font-medium group"
                   >
                     <span className="relative">
                       {link}
-                      <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500 ease-out" />
+                      <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#0071e3] dark:bg-[#2997ff] group-hover:w-full transition-all duration-300 ease-out" />
                     </span>
                   </motion.button>
                 </motion.li>
@@ -134,7 +117,7 @@ export const Footer = () => {
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-4"
           >
-            <h4 className="text-xs uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400 mb-6 font-black">
+            <h4 className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-6 font-medium">
               Services
             </h4>
             <ul className="space-y-3">
@@ -153,12 +136,9 @@ export const Footer = () => {
                   viewport={{ once: true }}
                   transition={{ delay: 0.25 + i * 0.05, duration: 0.6, ease: "easeOut" }}
                   whileHover={{ x: 5 }}
-                  className="text-gray-700 dark:text-gray-300 text-sm font-semibold cursor-pointer hover:text-accent transition-colors duration-500 ease-out"
+                  className="text-gray-600 dark:text-gray-400 text-sm font-normal cursor-pointer hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-200"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-accent rounded-full" />
-                    {service}
-                  </span>
+                  {service}
                 </motion.li>
               ))}
             </ul>
@@ -167,7 +147,7 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <motion.div 
-          className="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -197,7 +177,7 @@ export const Footer = () => {
               }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Heart className="w-4 h-4 text-accent fill-accent" />
+              <Heart className="w-4 h-4 text-[#0071e3] dark:text-[#2997ff] fill-[#0071e3] dark:fill-[#2997ff]" />
             </motion.div>
             <span>& passion</span>
           </motion.div>

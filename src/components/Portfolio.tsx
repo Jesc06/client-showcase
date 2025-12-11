@@ -79,53 +79,24 @@ export const Portfolio = () => {
   );
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-white/80 via-gray-50/80 to-white/80 dark:from-[#050508] dark:via-[#0a0a14] dark:to-[#050508] relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: 'repeating-linear-gradient(0deg, #FF634A 0px, transparent 1.5px, transparent 60px), repeating-linear-gradient(90deg, #FF634A 0px, transparent 1.5px, transparent 60px)',
-        }} />
-      </div>
+    <section className="py-24 md:py-32 bg-[#fafafa] dark:bg-[#000000] relative">
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/40 dark:to-white/2" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: [0.28, 0.11, 0.32, 1] }}
           className="mb-16 text-center"
         >
-          <motion.span 
-            className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-[0.35em] font-bold mb-6 block"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            My Work
-          </motion.span>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="h-1.5 w-24 bg-gradient-to-r from-[#FF634A] to-[#ff7a5c] rounded-full shadow-sm shadow-[#FF634A]/30 mb-8 mx-auto"
-          />
-
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter leading-none">
-            PORTFOLIO
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tracking-tight leading-tight mb-4">
+            Portfolio
           </h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
-          >
+          <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A curated selection of my finest video editing work
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Filter */}
@@ -148,10 +119,10 @@ export const Portfolio = () => {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setFilter(category as typeof filter)}
-              className={`relative px-5 md:px-6 py-2.5 md:py-3 rounded-full border-2 transition-all overflow-hidden font-bold tracking-wide text-xs md:text-sm backdrop-blur-sm ${
+              className={`relative px-5 md:px-6 py-2.5 md:py-3 rounded-full border-2 transition-all overflow-hidden font-medium tracking-wide text-xs md:text-sm backdrop-blur-sm ${
                 filter === category
-                  ? 'bg-accent border-accent text-white shadow-lg shadow-accent/30'
-                  : 'glass border-gray-200/50 dark:border-white/10 hover:border-accent hover:text-accent hover:shadow-md'
+                  ? 'bg-[#0071e3] dark:bg-[#2997ff] border-[#0071e3] dark:border-[#2997ff] text-white shadow-lg shadow-[#0071e3]/20 dark:shadow-[#2997ff]/20'
+                  : 'glass border-gray-200/50 dark:border-white/10 hover:border-[#0071e3] dark:hover:border-[#2997ff] hover:text-[#0071e3] dark:hover:text-[#2997ff] hover:shadow-md'
               }`}
             >
               <span className="relative z-10 font-bold uppercase tracking-wider">{category}</span>
@@ -182,13 +153,8 @@ export const Portfolio = () => {
                 y: -12, 
                 scale: 1.02
               }}
-              className="group relative overflow-hidden cursor-pointer aspect-[4/5] bg-gray-100 dark:bg-[#12121a] rounded-2xl md:rounded-3xl glass hover:border-accent/40 transition-all hover:shadow-2xl hover:shadow-accent/20 border-2 border-gray-200/50 dark:border-white/5"
+              className="group relative overflow-hidden cursor-pointer aspect-4/5 bg-white dark:bg-white/5 rounded-2xl md:rounded-3xl border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all hover:shadow-lg"
               onClick={() => setSelectedItem(item)}
-              style={{
-                boxShadow: hoveredId === item.id 
-                  ? '0 25px 70px rgba(255, 99, 74, 0.25), 0 0 50px rgba(255, 99, 74, 0.15)' 
-                  : '0 10px 40px rgba(0, 0, 0, 0.08)'
-              }}
             >
               {/* Premium shimmer effect */}
               <motion.div
@@ -218,8 +184,8 @@ export const Portfolio = () => {
               <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <motion.span 
-                    className="px-2.5 md:px-3 py-1 glass text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md border border-white/20"
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 99, 74, 1)", borderColor: "rgba(255, 99, 74, 1)" }}
+                    className="px-2.5 md:px-3 py-1 bg-white/10 dark:bg-white/20 text-white text-[9px] md:text-[10px] font-medium uppercase tracking-wider rounded-full backdrop-blur-md border border-white/20"
+                    whileHover={{ scale: 1.05 }}
                   >
                     {item.category}
                   </motion.span>
@@ -246,13 +212,13 @@ export const Portfolio = () => {
                   <div className="text-[9px] md:text-[10px] text-gray-300 uppercase tracking-widest mb-1.5 md:mb-2 font-medium">{item.year}</div>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-1">{item.title}</h3>
                   <p className="text-xs md:text-sm text-gray-300 mt-1.5 md:mt-2 line-clamp-2">{item.description}</p>
-                  <div className="w-10 md:w-12 h-0.5 bg-accent mt-2.5 md:mt-3" />
+                  <div className="w-10 md:w-12 h-0.5 bg-[#0071e3] dark:bg-[#2997ff] mt-2.5 md:mt-3" />
                 </motion.div>
               </div>
 
               {/* Corner Lines */}
               <motion.div
-                className="absolute top-0 left-0 w-12 h-12 border-t-4 border-l-4 border-[#FF634A] rounded-tl-lg"
+                className="absolute top-0 left-0 w-12 h-12 border-t-4 border-l-4 border-[#0071e3] dark:border-[#2997ff] rounded-tl-lg"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ 
                   opacity: hoveredId === item.id ? 1 : 0,
@@ -261,7 +227,7 @@ export const Portfolio = () => {
                 transition={{ duration: 0.3 }}
               />
               <motion.div
-                className="absolute bottom-0 right-0 w-12 h-12 border-b-4 border-r-4 border-[#FF634A] rounded-br-lg"
+                className="absolute bottom-0 right-0 w-12 h-12 border-b-4 border-r-4 border-[#0071e3] dark:border-[#2997ff] rounded-br-lg"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ 
                   opacity: hoveredId === item.id ? 1 : 0,
@@ -293,7 +259,7 @@ export const Portfolio = () => {
             >
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute -top-16 right-0 p-3 bg-accent text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-xl shadow-lg hover:shadow-xl border-2 border-accent hover:border-black dark:hover:border-white"
+                className="absolute -top-16 right-0 p-3 bg-[#0071e3] dark:bg-[#2997ff] text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-xl shadow-lg hover:shadow-xl border-2 border-[#0071e3] dark:border-[#2997ff] hover:border-black dark:hover:border-white"
               >
                 <X size={24} />
               </button>
@@ -302,9 +268,9 @@ export const Portfolio = () => {
                 alt={selectedItem.title}
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
-              <div className="mt-6 p-6 bg-white dark:bg-[#111] border-l-4 border-[#FF634A]">
+              <div className="mt-6 p-6 bg-white dark:bg-[#111] border-l-4 border-[#0071e3] dark:border-[#2997ff]">
                 <div className="flex items-center gap-4 mb-2">
-                  <span className="px-3 py-1 bg-[#FF634A] text-white text-xs font-bold uppercase">
+                  <span className="px-3 py-1 bg-[#0071e3] dark:bg-[#2997ff] text-white text-xs font-semibold uppercase">
                     {selectedItem.category}
                   </span>
                   <span className="text-gray-600 dark:text-gray-500 text-sm">{selectedItem.year}</span>

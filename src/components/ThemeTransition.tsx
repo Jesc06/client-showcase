@@ -16,7 +16,7 @@ export const ThemeTransition = () => {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="fixed inset-0 pointer-events-none z-[9998] flex items-center justify-center"
           >
-            <div className="w-64 h-64 rounded-full bg-linear-to-r from-accent to-purple-500 blur-3xl" />
+            <div className="w-64 h-64 rounded-full bg-[#0071e3] dark:bg-[#2997ff] blur-3xl" />
           </motion.div>
 
           {/* Quick Color Flash */}
@@ -24,7 +24,7 @@ export const ThemeTransition = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.15, 0] }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-accent pointer-events-none z-[9997]"
+            className="fixed inset-0 bg-[#0071e3] dark:bg-[#2997ff] pointer-events-none z-[9997]"
           />
         </>
       )}

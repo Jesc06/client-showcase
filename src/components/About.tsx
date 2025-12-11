@@ -4,9 +4,9 @@ import profileImage from '../assets/profileniBOss.png';
 
 export const About = () => {
   const stats = [
-    { icon: Award, value: '100+', label: 'VIDEOS EDITED', color: '#FF634A' },
-    { icon: Target, value: '50+', label: 'HAPPY CLIENTS', color: '#FF634A' },
-    { icon: Zap, value: '5+', label: 'YEARS', color: '#FF634A' },
+    { icon: Award, value: '100+', label: 'VIDEOS EDITED' },
+    { icon: Target, value: '50+', label: 'HAPPY CLIENTS' },
+    { icon: Zap, value: '5+', label: 'YEARS' },
   ];
 
   const education = [
@@ -31,12 +31,8 @@ export const About = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-transparent via-white/40 to-transparent dark:via-[#0a0a14]/40 relative">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-40 dark:opacity-30">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-accent/15 to-transparent dark:from-accent/10 rounded-full blur-[160px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-purple-400/15 to-transparent dark:from-purple-500/10 rounded-full blur-[160px]" />
-      </div>
+    <section className="py-24 md:py-32 bg-white dark:bg-[#000000] relative">
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-gray-50/30 dark:to-white/2" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
@@ -47,56 +43,38 @@ export const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.span 
-              className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-[0.35em] font-bold mb-6 block"
-              initial={{ x: -20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              Who I Am
-            </motion.span>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="h-1.5 w-24 bg-gradient-to-r from-[#FF634A] to-[#ff7a5c] rounded-full shadow-sm shadow-[#FF634A]/30 mb-10"
-            />
-            
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-12 tracking-tighter leading-[0.95]">
-              RENIER MAGSIPOC
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] tracking-tight leading-tight mb-8">
+              About Me
             </h2>
 
-            <div className="space-y-6 text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
+            <div className="space-y-6 text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-12">
               <p>
-                I'm a <span className="text-[#FF634A] font-bold">Student Editor</span> and Information Technology student 
+                I'm a <span className="text-[#0071e3] dark:text-[#2997ff] font-semibold">Student Editor</span> and Information Technology student 
                 passionate about transforming raw footage into captivating stories. I use my laptop as my creative weapon 
                 to deliver high-quality edits.
               </p>
 
               <p>
-                Currently studying at <span className="text-[#FF634A] font-bold">Mindoro State University</span>, 
+                Currently studying at <span className="text-[#0071e3] dark:text-[#2997ff] font-semibold">Mindoro State University</span>, 
                 I balance my academic life with my passion for video editing, offering budget-friendly services 
                 perfect for school projects and more.
               </p>
 
               <div className="flex flex-wrap gap-3 md:gap-4 mt-6 md:mt-8">
-                <div className="px-4 md:px-6 py-2.5 md:py-3 glass rounded-xl flex items-center gap-2 md:gap-3 hover:shadow-lg transition-all duration-300">
-                  <Laptop size={18} className="text-accent" />
-                  <span className="font-bold text-xs md:text-sm">Premiere Pro</span>
+                <div className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-100 dark:bg-white/10 rounded-full flex items-center gap-2 md:gap-3 hover:bg-gray-200 dark:hover:bg-white/15 transition-all duration-200">
+                  <Laptop size={18} className="text-[#0071e3] dark:text-[#2997ff]" />
+                  <span className="font-medium text-xs md:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">Premiere Pro</span>
                 </div>
-                <div className="px-4 md:px-6 py-2.5 md:py-3 glass rounded-xl flex items-center gap-2 md:gap-3 hover:shadow-lg transition-all duration-300">
-                  <Laptop size={18} className="text-accent" />
-                  <span className="font-bold text-xs md:text-sm">CapCut Pro</span>
+                <div className="px-4 md:px-6 py-2.5 md:py-3 bg-gray-100 dark:bg-white/10 rounded-full flex items-center gap-2 md:gap-3 hover:bg-gray-200 dark:hover:bg-white/15 transition-all duration-200">
+                  <Laptop size={18} className="text-[#0071e3] dark:text-[#2997ff]" />
+                  <span className="font-medium text-xs md:text-sm text-[#1d1d1f] dark:text-[#f5f5f7]">CapCut Pro</span>
                 </div>
               </div>
             </div>
 
             {/* Education Timeline */}
             <div className="space-y-5 md:space-y-6 mb-10 md:mb-12">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-6 md:mb-8 tracking-tight">EDUCATION</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-6 md:mb-8 tracking-tight">Education</h3>
               {education.map((edu, index) => (
                 <motion.div 
                   key={index}
@@ -107,8 +85,8 @@ export const About = () => {
                   className="flex gap-4 md:gap-6 group"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent transition-colors duration-300">
-                      <edu.icon size={18} className="text-accent group-hover:text-white transition-colors" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0071e3]/10 dark:bg-[#2997ff]/10 flex items-center justify-center group-hover:bg-[#0071e3] dark:group-hover:bg-[#2997ff] transition-colors duration-200">
+                      <edu.icon size={18} className="text-[#0071e3] dark:text-[#2997ff] group-hover:text-white transition-colors" />
                     </div>
                     {index !== education.length - 1 && (
                       <div className="w-0.5 h-full bg-gray-200 dark:bg-white/10 my-2" />
@@ -116,7 +94,7 @@ export const About = () => {
                   </div>
                   <div>
                     <h4 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white">{edu.school}</h4>
-                    <p className="text-accent font-bold text-xs md:text-sm uppercase tracking-wider mb-1">{edu.level}</p>
+                    <p className="text-[#0071e3] dark:text-[#2997ff] font-semibold text-xs md:text-sm uppercase tracking-wider mb-1">{edu.level}</p>
                     <p className="text-gray-500 dark:text-gray-400 text-xs md:text-sm">{edu.detail}</p>
                   </div>
                 </motion.div>
@@ -138,32 +116,25 @@ export const About = () => {
                   }}
                   className="relative group"
                 >
-                  <div className="p-5 sm:p-6 md:p-8 glass group-hover:shadow-2xl group-hover:shadow-accent/15 transition-all duration-300 rounded-xl md:rounded-2xl">
+                  <div className="p-5 sm:p-6 md:p-8 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-200 rounded-xl md:rounded-2xl">
                     <motion.div
-                      whileHover={{ rotate: 360, scale: 1.2 }}
-                      transition={{ duration: 0.6 }}
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
                     >
                       <stat.icon 
                         size={24} 
-                        className="text-gray-600 dark:text-gray-400 group-hover:text-accent transition-colors mb-3 md:mb-4" 
+                        className="text-[#0071e3] dark:text-[#2997ff] mb-3 md:mb-4" 
                         strokeWidth={2}
                       />
                     </motion.div>
                     <motion.div 
-                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-1.5 md:mb-2"
-                      whileHover={{ scale: 1.1 }}
+                      className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-1.5 md:mb-2"
+                      whileHover={{ scale: 1.05 }}
                     >
                       {stat.value}
                     </motion.div>
-                    <div className="text-[9px] md:text-[10px] lg:text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest font-bold">{stat.label}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wide font-medium">{stat.label}</div>
                   </div>
-                  <motion.div 
-                    className="absolute bottom-0 left-0 w-full h-1 rounded-b-xl"
-                    style={{ backgroundColor: stat.color }}
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.4 }}
-                  />
                 </motion.div>
               ))}
             </div>
@@ -185,11 +156,11 @@ export const About = () => {
               />
               
               {/* Border Frame */}
-              <div className="absolute inset-0 border-8 border-black pointer-events-none" />
+              <div className="absolute inset-0 border-4 border-gray-200 dark:border-white/10 pointer-events-none rounded-2xl" />
               
               {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#FF634A]" />
-              <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#FF634A]" />
+              <div className="absolute top-0 left-0 w-16 h-16 border-t-3 border-l-3 border-[#0071e3] dark:border-[#2997ff] rounded-tl-2xl" />
+              <div className="absolute bottom-0 right-0 w-16 h-16 border-b-3 border-r-3 border-[#0071e3] dark:border-[#2997ff] rounded-br-2xl" />
 
               {/* Overlay Badge */}
               <motion.div
@@ -202,7 +173,7 @@ export const About = () => {
                   rotate: 5,
                   boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)"
                 }}
-                className="absolute top-8 right-8 bg-[#FF634A] text-white p-6 font-black rounded-xl shadow-xl"
+                className="absolute top-8 right-8 bg-[#0071e3] dark:bg-[#2997ff] text-white p-6 font-semibold rounded-xl shadow-lg"
               >
                 <motion.div 
                   className="text-2xl"

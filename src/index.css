@@ -5,14 +5,18 @@
 @theme {
   --color-primary-light: #0F0F0F;
   --color-primary-dark: #E8E8E8;
-  --color-accent: #FF634A;
-  --color-accent-hover: #ff7a5c;
+  --color-accent: #0071e3;
+  --color-accent-hover: #2997ff;
   --color-subtle: #6B7280;
 }
 
 :root {
-  --theme-transition-duration: 400ms;
+  --theme-transition-duration: 500ms;
   --theme-transition-active: 0;
+  --apple-gray: #1d1d1f;
+  --apple-gray-light: #f5f5f7;
+  --apple-blue: #0071e3;
+  --apple-border: rgba(0, 0, 0, 0.08);
 }
 
 
@@ -20,12 +24,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
-  transition: background-color var(--theme-transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--theme-transition-duration) cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 * {
-  transition: background-color var(--theme-transition-duration) ease,
-              color var(--theme-transition-duration) ease;
+  transition: background-color var(--theme-transition-duration) cubic-bezier(0.28, 0.11, 0.32, 1),
+              color var(--theme-transition-duration) cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 body {
@@ -36,13 +40,13 @@ body {
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 25%, #f5f7fa 50%, #fafbfc 75%, #ffffff 100%);
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+  text-rendering: optimizeLegibility;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  background: #fafafa;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--apple-gray);
 }
 
 body::before {
@@ -61,13 +65,12 @@ body::before {
 }
 
 body.dark {
-  background: linear-gradient(135deg, #050508 0%, #0a0a14 25%, #050510 50%, #0a0a14 75%, #050508 100%);
-  background-size: 400% 400%;
-  animation: gradient-shift 20s ease infinite;
+  background: #000000;
+  color: #f5f5f7;
 }
 
 body.dark::before {
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 #root {
@@ -86,35 +89,44 @@ body.dark::before {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings - bold but balanced */
+/* Apple-style Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', system-ui, sans-serif;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  line-height: 1.1;
+  color: inherit;
 }
 
 h1 {
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.5rem, 6vw, 5rem);
 }
 
 h2 {
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-size: clamp(2rem, 4vw, 3.5rem);
 }
 
 h3, h4 {
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-/* Body text - clean but substantial */
+/* Body text - Apple's refined approach */
 body {
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
 }
 
 p {
-  font-weight: 500;
-  line-height: 1.7;
+  font-weight: 400;
+  line-height: 1.6;
+  color: inherit;
 }
 
 span, div {
@@ -122,12 +134,13 @@ span, div {
 }
 
 strong, b {
-  font-weight: 800;
+  font-weight: 600;
 }
 
-/* Buttons and labels stay bold */
+/* Apple-style buttons */
 button {
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 /* Custom Scrollbar */
@@ -146,7 +159,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #FF634A, #ff7a5c);
+  background: linear-gradient(135deg, #0071e3, #2997ff);
   border-radius: 10px;
   border: 3px solid transparent;
   background-clip: padding-box;
@@ -154,7 +167,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #ff7a5c, #FF634A);
+  background: linear-gradient(135deg, #2997ff, #0071e3);
   background-clip: padding-box;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -165,12 +178,12 @@ button {
 
 a {
   font-weight: 500;
-  color: #FF634A;
+  color: #0071e3;
   text-decoration: inherit;
   transition: all 0.3s ease;
 }
 a:hover {
-  color: #ff7a5c;
+  color: #2997ff;
 }
 
 h1 {
@@ -194,44 +207,40 @@ button:focus-visible {
   outline: none;
 }
 
-/* Glass effect utility class */
+/* Apple Glass Effect */
 .glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 .dark .glass {
-  background: rgba(15, 15, 20, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  background: rgba(29, 29, 31, 0.72);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Ultra Premium Glass Effect */
+/* Apple Premium Glass */
 .glass-premium {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 0 rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
   position: relative;
   overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 .dark .glass-premium {
-  background: linear-gradient(135deg, rgba(15, 15, 20, 0.85) 0%, rgba(10, 10, 15, 0.7) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 0 rgba(255, 255, 255, 0.08);
+  background: rgba(29, 29, 31, 0.8);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-premium::before {
@@ -241,8 +250,8 @@ button:focus-visible {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.7s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 .glass-premium:hover::before {
