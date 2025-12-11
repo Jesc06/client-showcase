@@ -79,7 +79,7 @@ export const Portfolio = () => {
   );
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 bg-gradient-to-b from-white/80 via-gray-50/80 to-white/80 dark:from-[#050508] dark:via-[#0a0a14] dark:to-[#050508] relative">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-white/80 via-gray-50/80 to-white/80 dark:from-[#050508] dark:via-[#0a0a14] dark:to-[#050508] relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
         <div className="absolute inset-0" style={{ 

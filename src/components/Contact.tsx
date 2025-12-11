@@ -15,7 +15,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-gradient-to-b from-gray-50/80 via-white to-gray-50/80 dark:from-[#0a0a14] dark:via-[#050508] dark:to-[#0a0a14] relative">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50/80 via-white to-gray-50/80 dark:from-[#0a0a14] dark:via-[#050508] dark:to-[#0a0a14] relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
         <div className="absolute inset-0" style={{ 

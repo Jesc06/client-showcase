@@ -8,6 +8,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { PageLoader } from './components/PageLoader';
 import { ThemeTransition } from './components/ThemeTransition';
+import { SectionTransition } from './components/SectionTransition';
 import './App.css';
 
 function App() {
@@ -37,11 +38,21 @@ function App() {
         
         <div className="relative z-10">
           <Navbar />
-          <Hero />
-          <Portfolio />
-          <Services />
-          <About />
-          <Contact />
+          <SectionTransition id="home">
+            <Hero />
+          </SectionTransition>
+          <SectionTransition id="portfolio">
+            <Portfolio />
+          </SectionTransition>
+          <SectionTransition id="services">
+            <Services />
+          </SectionTransition>
+          <SectionTransition id="about">
+            <About />
+          </SectionTransition>
+          <SectionTransition id="contact">
+            <Contact />
+          </SectionTransition>
           <Footer />
         </div>
       </div>

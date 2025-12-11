@@ -7,6 +7,10 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primary: {
           light: '#6366f1',

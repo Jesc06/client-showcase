@@ -31,7 +31,7 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-gradient-to-b from-transparent via-white/40 to-transparent dark:via-[#0a0a14]/40 relative">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-transparent via-white/40 to-transparent dark:via-[#0a0a14]/40 relative">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-40 dark:opacity-30">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-accent/15 to-transparent dark:from-accent/10 rounded-full blur-[160px]" />

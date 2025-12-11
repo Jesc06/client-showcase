@@ -38,7 +38,6 @@ export const Hero = () => {
 
   return (
     <section
-      id="home"
       className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-[#050508] dark:via-[#0a0a14] dark:to-[#050508] overflow-hidden selection:bg-accent/30"
     >
       {/* Ultra-Premium Background Elements */}
