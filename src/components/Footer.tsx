@@ -141,8 +141,7 @@ export const Footer = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.25 + i * 0.05, duration: 0.6, ease: "easeOut" }}
-                  whileHover={{ x: 3 }}
-                  transition={{ duration: 0.4, ease: [0.28, 0.11, 0.32, 1] }}
+                  whileHover={{ x: 3, transition: { duration: 0.4, ease: [0.28, 0.11, 0.32, 1] } }}
                   className="text-gray-600 dark:text-gray-400 text-sm font-normal cursor-pointer hover:text-[#0071e3] dark:hover:text-[#2997ff] transition-colors duration-300"
                 >
                   {service}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Video, Camera, Scissors, Sparkles, MonitorPlay, Presentation, Image as ImageIcon, Film } from 'lucide-react';
+import { MonitorPlay, Presentation, Image as ImageIcon, Film } from 'lucide-react';
 
 const services = [
   {

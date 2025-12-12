@@ -8,14 +8,13 @@
 import {
   getAllVideos,
   getVideosByCategory,
-  playVideo,
   searchVideos,
   sortVideosByYear,
   getRandomVideos,
   getCategories,
   getVideoCounts,
   type VideoItem,
-} from './utils/videoManager';
+} from './videoManager';
 
 // Sample video data (you would import this from your Portfolio component)
 const sampleVideos: VideoItem[] = [
@@ -78,12 +77,12 @@ console.log('\n=== Example 4: Sort Videos ===');
 // Get newest videos first
 const newestFirst = sortVideosByYear(sampleVideos, 'desc');
 console.log('Newest videos first:');
-newestFirst.forEach(v => console.log(`- ${v.title} (${v.year})`));
+newestFirst.forEach((v: VideoItem) => console.log(`- ${v.title} (${v.year})`));
 
 // Get oldest videos first
 const oldestFirst = sortVideosByYear(sampleVideos, 'asc');
 console.log('\nOldest videos first:');
-oldestFirst.forEach(v => console.log(`- ${v.title} (${v.year})`));
+oldestFirst.forEach((v: VideoItem) => console.log(`- ${v.title} (${v.year})`));
 
 // ============================================================================
 // EXAMPLE 5: Get Random Videos (Featured Section)
@@ -93,7 +92,7 @@ console.log('\n=== Example 5: Featured/Random Videos ===');
 // Get 3 random videos for a featured section
 const featuredVideos = getRandomVideos(sampleVideos, 3);
 console.log('Featured videos:');
-featuredVideos.forEach(v => console.log(`- ${v.title}`));
+featuredVideos.forEach((v: VideoItem) => console.log(`- ${v.title}`));
 
 // ============================================================================
 // EXAMPLE 6: Get All Categories
@@ -119,17 +118,8 @@ Object.entries(counts).forEach(([category, count]) => {
 // ============================================================================
 console.log('\n=== Example 8: Play Video ===');
 
-// This would typically be called from a button click event
-function handlePlayVideo(videoId: number) {
-  const video = sampleVideos.find(v => v.id === videoId);
-  if (video) {
-    console.log(`Opening video: ${video.title}`);
-    playVideo(video.driveLink);
-  }
-}
-
-// Example usage
-console.log('Call handlePlayVideo(1) to open the first video');
+// Example usage: call playVideo(driveLink) directly
+console.log('Example: playVideo("https://drive.google.com/...") to open a video');
 
 // ============================================================================
 // EXAMPLE 9: Building a Custom Component
@@ -150,7 +140,7 @@ function FeaturedVideosExample() {
   const newest = sortVideosByYear(featured, 'desc');
   
   console.log('Featured section would display:');
-  newest.forEach((video, index) => {
+  newest.forEach((video: VideoItem, index: number) => {
     console.log(`${index + 1}. ${video.title} (${video.year}) - ${video.category}`);
   });
   
@@ -175,8 +165,8 @@ function displayStatistics() {
   console.log('\nBreakdown:');
   
   Object.entries(counts)
-    .sort(([, a], [, b]) => b - a) // Sort by count descending
-    .forEach(([category, count]) => {
+    .sort(([, a]: [string, number], [, b]: [string, number]) => b - a) // Sort by count descending
+    .forEach(([category, count]: [string, number]) => {
       const percentage = ((count / total) * 100).toFixed(1);
       console.log(`  ${category}: ${count} (${percentage}%)`);
     });
@@ -208,7 +198,7 @@ function advancedSearch(
   
   // Filter by year
   if (year) {
-    results = results.filter(v => v.year === year);
+    results = results.filter((v: VideoItem) => v.year === year);
   }
   
   return results;
