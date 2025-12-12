@@ -1,82 +1,225 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { X, Maximize2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, Maximize2, Play } from 'lucide-react';
 
-const portfolioItems = [
+/**
+ * Video data structure
+ * Each video contains:
+ * - id: Unique identifier
+ * - title: Display name for the video
+ * - category: Classification (Wedding, Advertisement, Blog, Short Film, Documentary)
+ * - year: Production year
+ * - driveLink: Original Google Drive sharing link
+ * - embedLink: Converted link for embedding video players
+ * - thumbnail: Preview image extracted from Google Drive
+ * - description: Brief description of the video content
+ */
+interface VideoItem {
+  id: number;
+  title: string;
+  category: 'Wedding' | 'Advertisement' | 'Blog' | 'Short Film' | 'Documentary';
+  year: string;
+  driveLink: string;
+  embedLink: string;
+  thumbnail: string;
+  description: string;
+}
+
+/**
+ * Utility function to convert Google Drive share link to embeddable format
+ * Converts: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+ * To: https://drive.google.com/file/d/FILE_ID/preview
+ */
+const convertToEmbedLink = (driveLink: string): string => {
+  const fileIdMatch = driveLink.match(/\/d\/([^/]+)/);
+  if (fileIdMatch && fileIdMatch[1]) {
+    return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
+  }
+  return driveLink;
+};
+
+/**
+ * Utility function to get thumbnail from Google Drive
+ * Uses Google Drive's thumbnail API
+ */
+const getThumbnail = (driveLink: string): string => {
+  const fileIdMatch = driveLink.match(/\/d\/([^/]+)/);
+  if (fileIdMatch && fileIdMatch[1]) {
+    return `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}&sz=w800`;
+  }
+  return '';
+};
+
+/**
+ * Portfolio video collection
+ * All videos are organized by category with metadata
+ */
+const portfolioItems: VideoItem[] = [
+  // Wedding Category
   {
     id: 1,
     title: 'Cinematic Wedding Film',
-    category: 'Video Editing',
+    category: 'Wedding',
     year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=1000&fit=crop',
+    driveLink: 'https://drive.google.com/file/d/1c8WStMKnZKbRb6loHOR47JWRjALhgGwp/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/1c8WStMKnZKbRb6loHOR47JWRjALhgGwp/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/1c8WStMKnZKbRb6loHOR47JWRjALhgGwp/view?usp=sharing'),
     description: 'Multi-cam edit with emotional storytelling and color grading',
   },
+  
+  // Advertisement Category
   {
     id: 2,
     title: 'Corporate Promo',
-    category: 'Motion Graphics',
+    category: 'Advertisement',
     year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=1000&fit=crop',
+    driveLink: 'https://drive.google.com/file/d/1O1OPbm78nWRdutHbF0xZJFiR5rW-i3vY/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/1O1OPbm78nWRdutHbF0xZJFiR5rW-i3vY/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/1O1OPbm78nWRdutHbF0xZJFiR5rW-i3vY/view?usp=sharing'),
     description: 'Dynamic motion graphics with brand integration',
   },
+  
+  // Blog Category
   {
     id: 3,
-    title: 'Music Video',
-    category: 'Color Grading',
+    title: 'Travel Vlog Series',
+    category: 'Blog',
     year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=1000&fit=crop',
+    driveLink: 'https://drive.google.com/file/d/1jedD7o6EZBQWdRg-ha2Nqy-HtG3fRzvl/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/1jedD7o6EZBQWdRg-ha2Nqy-HtG3fRzvl/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/1jedD7o6EZBQWdRg-ha2Nqy-HtG3fRzvl/view?usp=sharing'),
+    description: 'Fast-paced editing with smooth transitions',
+  },
+  
+  // Short Film Category
+  {
+    id: 4,
+    title: 'Short Film',
+    category: 'Short Film',
+    year: '2024',
+    driveLink: 'https://drive.google.com/file/d/1T0FNi_lSlMzgqXtW1_UEWTXS5diqFg7Q/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/1T0FNi_lSlMzgqXtW1_UEWTXS5diqFg7Q/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/1T0FNi_lSlMzgqXtW1_UEWTXS5diqFg7Q/view?usp=sharing'),
     description: 'Moody color grade with creative transitions',
   },
   {
-    id: 4,
-    title: 'Travel Vlog Series',
-    category: 'Video Editing',
-    year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=1000&fit=crop',
-    description: 'Fast-paced editing with smooth transitions',
-  },
-  {
     id: 5,
-    title: 'Documentary Short',
-    category: 'Video Editing',
+    title: 'Event Highlight Reel',
+    category: 'Short Film',
     year: '2023',
-    thumbnail: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=1000&fit=crop',
-    description: 'Narrative-driven edit with interview integration',
+    driveLink: 'https://drive.google.com/file/d/1PeZgUAh4s5AYgh4_ROodk2qY5jd3dplA/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/1PeZgUAh4s5AYgh4_ROodk2qY5jd3dplA/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/1PeZgUAh4s5AYgh4_ROodk2qY5jd3dplA/view?usp=sharing'),
+    description: 'Energetic cuts with cinematic color treatment',
   },
-  {
-    id: 6,
-    title: 'Product Showcase',
-    category: 'Motion Graphics',
-    year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=1000&fit=crop',
-    description: 'Sleek animations with product highlights',
-  },
+  
+  // Documentary Category
+
   {
     id: 7,
-    title: 'Social Media Content',
-    category: 'Video Editing',
+    title: 'Historical Documentary',
+    category: 'Documentary',
     year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=1000&fit=crop',
-    description: 'Vertical format edits optimized for engagement',
-  },
-  {
-    id: 8,
-    title: 'Event Highlight Reel',
-    category: 'Color Grading',
-    year: '2023',
-    thumbnail: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=1000&fit=crop',
-    description: 'Energetic cuts with cinematic color treatment',
+    driveLink: 'https://drive.google.com/file/d/17q4RVF7uaHxxskKJfRVrL0A9cnTJHqIT/view?usp=sharing',
+    embedLink: convertToEmbedLink('https://drive.google.com/file/d/17q4RVF7uaHxxskKJfRVrL0A9cnTJHqIT/view?usp=sharing'),
+    thumbnail: getThumbnail('https://drive.google.com/file/d/17q4RVF7uaHxxskKJfRVrL0A9cnTJHqIT/view?usp=sharing'),
+    description: 'In-depth storytelling with archival footage',
   },
 ];
 
+/**
+ * Function to get all videos
+ * @returns Array of all video items
+ */
+export const getAllVideos = (): VideoItem[] => {
+  return portfolioItems;
+};
+
+/**
+ * Function to get videos by category
+ * @param category - The category to filter by
+ * @returns Array of videos in the specified category
+ */
+export const getVideosByCategory = (category: VideoItem['category']): VideoItem[] => {
+  return portfolioItems.filter(item => item.category === category);
+};
+
+/**
+ * Function to open video in new tab
+ * @param driveLink - The Google Drive link to open
+ */
+export const playVideo = (driveLink: string): void => {
+  window.open(driveLink, '_blank');
+};
+
+/**
+ * Portfolio Component
+ * Displays video portfolio with category filtering and premium modal preview
+ */
 export const Portfolio = () => {
-  const [selectedItem, setSelectedItem] = useState<typeof portfolioItems[0] | null>(null);
-  const [filter, setFilter] = useState<'All' | 'Video Editing' | 'Motion Graphics' | 'Color Grading'>('All');
+  // State for selected video modal
+  const [selectedItem, setSelectedItem] = useState<VideoItem | null>(null);
+  
+  // State for category filter
+  const [filter, setFilter] = useState<'All' | 'Wedding' | 'Advertisement' | 'Blog' | 'Short Film' | 'Documentary'>('All');
+  
+  // State for hover effects
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
+  // State for video loading
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+
+  /**
+   * Filter videos based on selected category
+   * Returns all videos if 'All' is selected, otherwise filters by category
+   */
   const filteredItems = portfolioItems.filter(
     item => filter === 'All' || item.category === filter
   );
+
+  /**
+   * Handle video selection - reset loading state
+   */
+  const handleVideoSelect = (item: VideoItem) => {
+    setIsVideoLoading(true);
+    setSelectedItem(item);
+  };
+
+  /**
+   * Handle modal close - reset states
+   */
+  const handleCloseModal = () => {
+    setSelectedItem(null);
+    setIsVideoLoading(true);
+  };
+
+  /**
+   * Handle ESC key to close modal
+   */
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedItem) {
+        handleCloseModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedItem]);
+
+  /**
+   * Prevent body scroll when modal is open
+   */
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedItem]);
 
   return (
     <section className="py-24 md:py-32 bg-[#fafafa] dark:bg-[#000000] relative">
@@ -106,7 +249,7 @@ export const Portfolio = () => {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-16"
         >
-          {['All', 'Video Editing', 'Motion Graphics', 'Color Grading'].map((category, index) => (
+          {['All', 'Wedding', 'Advertisement', 'Blog', 'Short Film', 'Documentary'].map((category, index) => (
             <motion.button
               key={category}
               initial={{ opacity: 0, y: 20 }}
@@ -153,8 +296,8 @@ export const Portfolio = () => {
                 y: -16, 
                 scale: 1.03
               }}
-              className="group relative overflow-hidden cursor-pointer aspect-4/5 glass-card rounded-3xl transition-all"
-              onClick={() => setSelectedItem(item)}
+              className="group relative overflow-hidden cursor-pointer aspect-4/5 glass-card rounded-3xl transition-all shadow-lg hover:shadow-2xl"
+              onClick={() => handleVideoSelect(item)}
               style={{ perspective: 1000 }}
             >
               {/* Enhanced shimmer effect */}
@@ -163,16 +306,53 @@ export const Portfolio = () => {
                 animate={hoveredId === item.id ? { x: ['100%', '200%'] } : {}}
                 transition={{ duration: 1.2, ease: 'easeInOut' }}
               />
-              {/* Image */}
-              <motion.img
-                src={item.thumbnail}
-                alt={item.title}
-                className="w-full h-full object-cover"
+              
+              {/* Video Thumbnail */}
+              <motion.div
+                className="w-full h-full relative bg-gradient-to-br from-gray-900 via-black to-gray-900"
                 animate={{
                   scale: hoveredId === item.id ? 1.1 : 1,
                 }}
                 transition={{ duration: 0.7, ease: [0.28, 0.11, 0.32, 1] }}
-              />
+              >
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Premium fallback with gradient background
+                    (e.target as HTMLImageElement).src = `https://via.placeholder.com/800x1000/0a0a0a/ffffff?text=${encodeURIComponent(item.title)}`;
+                  }}
+                />
+                
+                {/* Premium Play Button Overlay */}
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: hoveredId === item.id ? 1 : 0.6 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="relative"
+                    whileHover={{ scale: 1.15 }}
+                    animate={{
+                      scale: hoveredId === item.id ? 1.1 : 0.9,
+                    }}
+                    transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+                  >
+                    {/* Glow effect behind play button */}
+                    <div className="absolute inset-0 bg-white/30 dark:bg-blue-500/30 rounded-full blur-xl" />
+                    
+                    {/* Play button */}
+                    <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/95 dark:bg-white/90 backdrop-blur-md flex items-center justify-center border-2 border-white/50 shadow-2xl">
+                      <Play className="text-black dark:text-black ml-1" size={28} fill="currentColor" />
+                    </div>
+                  </motion.div>
+                </motion.div>
+
+                {/* Premium gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+              </motion.div>
 
               {/* Enhanced Overlay */}
               <motion.div
@@ -241,44 +421,117 @@ export const Portfolio = () => {
         </motion.div>
       </div>
 
-      {/* Modal */}
+      {/* Premium Video Player Modal */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/98 z-50 flex items-center justify-center p-6"
-            onClick={() => setSelectedItem(null)}
+            className="fixed inset-0 bg-black z-50 flex items-center justify-center p-0 md:p-4 lg:p-6"
+            onClick={handleCloseModal}
           >
+            {/* Close Button - Premium Style */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.2 }}
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all group"
+            >
+              <X className="text-white group-hover:rotate-90 transition-transform duration-300" size={20} />
+            </motion.button>
+
             <motion.div
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
-              className="relative max-w-7xl w-full"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              className="relative w-full h-full md:h-auto md:max-w-7xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="absolute -top-16 right-0 p-3 bg-[#0071e3] dark:bg-[#2997ff] text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-xl shadow-lg hover:shadow-xl border-2 border-[#0071e3] dark:border-[#2997ff] hover:border-black dark:hover:border-white"
+              {/* Premium Video Container */}
+              <div className="relative w-full h-full md:h-auto md:rounded-3xl overflow-hidden bg-black shadow-2xl">
+                {/* Video Player - Full Screen on Mobile, Responsive on Desktop */}
+                <div className="relative w-full h-full md:h-auto md:aspect-video bg-black">
+                  {/* Loading Spinner - Premium Style */}
+                  {isVideoLoading && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 flex items-center justify-center bg-black z-10"
+                    >
+                      <div className="relative">
+                        {/* Spinning ring */}
+                        <div className="w-16 h-16 border-4 border-white/10 border-t-white rounded-full animate-spin" />
+                        {/* Inner glow */}
+                        <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-white/50 rounded-full animate-spin blur-sm" />
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <iframe
+                    src={selectedItem.embedLink}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowFullScreen
+                    title={selectedItem.title}
+                    style={{ border: 'none' }}
+                    onLoad={() => setIsVideoLoading(false)}
+                  />
+                  
+                  {/* Subtle gradient overlay on edges for premium feel */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 md:rounded-3xl" />
+                </div>
+                
+                {/* Premium Video Info Overlay - Hidden on Mobile, Shown on Desktop */}
+                <motion.div
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="hidden md:block absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/95 to-transparent p-6 md:p-8"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold uppercase rounded-full tracking-wider">
+                          {selectedItem.category}
+                        </span>
+                        <span className="text-white/60 text-sm font-medium">{selectedItem.year}</span>
+                      </div>
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 tracking-tight">
+                        {selectedItem.title}
+                      </h3>
+                      <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl">
+                        {selectedItem.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Mobile Info Panel - Shown below video on mobile */}
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="md:hidden bg-black p-6 border-t border-white/10"
               >
-                <X size={24} />
-              </button>
-              <img
-                src={selectedItem.thumbnail}
-                alt={selectedItem.title}
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-              <div className="mt-6 p-6 bg-white dark:bg-[#111] border-l-4 border-[#0071e3] dark:border-[#2997ff]">
-                <div className="flex items-center gap-4 mb-2">
-                  <span className="px-3 py-1 bg-[#0071e3] dark:bg-[#2997ff] text-white text-xs font-semibold uppercase">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold uppercase rounded-full tracking-wider">
                     {selectedItem.category}
                   </span>
-                  <span className="text-gray-600 dark:text-gray-500 text-sm">{selectedItem.year}</span>
+                  <span className="text-white/60 text-sm font-medium">{selectedItem.year}</span>
                 </div>
-                <h3 className="text-4xl font-black text-black dark:text-white mb-3">{selectedItem.title}</h3>
-                <p className="text-lg text-gray-700 dark:text-gray-400">{selectedItem.description}</p>
-              </div>
+                <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                  {selectedItem.title}
+                </h3>
+                <p className="text-base text-white/80 leading-relaxed">
+                  {selectedItem.description}
+                </p>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
