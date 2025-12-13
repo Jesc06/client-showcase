@@ -13,7 +13,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
-      // Update active section based on scroll position
+     
       const sections = ['home', 'portfolio', 'services', 'about', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
